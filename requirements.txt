@@ -8,3 +8,4 @@ pytorch-lightning==1.4.9
 librosa==0.8.1
 scipy==1.7.1
 inflect==5.3.0
+torchmetrics==0.6.0
