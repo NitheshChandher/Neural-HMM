@@ -20,8 +20,6 @@
 [nvidia_toolkit_link]: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html
 
 
-This is the official code repository for the paper "[Neural HMMs are all you need (for high-quality attention-free TTS)][paper_link]". For audio examples, visit our [demo page][demo_page]. A [pre-trained model][pretrained_model_link] is also available.
-
 ![Synthesising from Neural-HMM](docs/images/model_video.gif)
 
 ## Installations
@@ -66,8 +64,6 @@ This is the official code repository for the paper "[Neural HMMs are all you nee
 * If you encounter this error message ```[W pthreadpool-cpp.cc:90] Warning: Leaking Caffe2 thread-pool after fork. (function pthreadpool)```, this is a known issue in [PyTorch Dataloader][pytorch_dataloader_issue_link]. 
 * It will be fixed when PyTorch releases a new Docker container image with updated version of Torch. If you are not using docker this can be removed with ```torch > 1.9.1```
 
-## Support
-If you have any questions or comments, please open an [issue][github_new_issue_link] on our GitHub repository.
 
 ## Citation information
 If you use or build on our method or code for your research, please cite our paper:
