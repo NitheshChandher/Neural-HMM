@@ -66,7 +66,7 @@
 
 
 ## Citation information
-If you use or build on our method or code for your research, please cite our paper:
+If you use or build on this method or code for your research, please cite the paper:
 ```
 @inproceedings{mehta2022neural,
   title={Neural {HMM}s are all you need (for high-quality attention-free {TTS})},
