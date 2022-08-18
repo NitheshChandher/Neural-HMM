@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import soundfile as sf
 import torch
 import torch.nn.functional as F
+from scipy.io.wavfile import read
 from librosa.filters import mel as librosa_mel_fn
 from librosa.util import normalize, pad_center, tiny
 from scipy.signal import get_window
 from torch.autograd import Variable
-import torchaudio
 
 
 class STFT(torch.nn.Module):
@@ -326,15 +327,13 @@ def load_wav_to_torch(full_path, sr):
     Returns:
         torch.FloatTensor of wav data and sampling rate
     """
-    data, sample_rate = torchaudio.load(full_path, normalize=False)
-    data = data.float()
+    sample_rate, data = read(full_path)
+    data = data.astype(np.float32)
     if sr != sample_rate:
-        data = torchaudio.functional.resample(data, sample_rate, sr)
+        import librosa
+        data = librosa.resample(data, sample_rate, sr)
 
-    if data.shape[0] != 1:
-        raise ValueError("Audio should be mono channel")
-
-    return data.flatten(), sr
+    return torch.from_numpy(data), sr
 
 
 def audio2mel(filename, sampling_rate_target=22050):
