@@ -1,5 +1,5 @@
 # WASP Summer School 2022 - Workshop on Speech Synthesis
----
+
 [ljspeech_link]: https://keithito.com/LJ-Speech-Dataset/
 [github_new_issue_link]: https://github.com/shivammehta007/Neural-HMM/issues/new
 [docker_install_link]: https://docs.docker.com/get-docker/
