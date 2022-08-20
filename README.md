@@ -1,6 +1,6 @@
 # WASP Summer School 2022 - Workshop on Speech Synthesis
 
-[ljspeech_link]: https://keithito.com/LJ-Speech-Dataset/
+[cmuarctic_link]: https://umeauniversity-my.sharepoint.com/:u:/g/personal/nich0037_ad_umu_se/Edi0a9f2A3BGpmCI78YFqsEBBlcWAfxURocQgl9M1UDSPg?e=w8Q842
 [github_new_issue_link]: https://github.com/shivammehta007/Neural-HMM/issues/new
 [docker_install_link]: https://docs.docker.com/get-docker/
 [tacotron2_link]: https://github.com/NVIDIA/tacotron2
@@ -22,7 +22,7 @@
 7. Run jupyter notebook and open ```workshop.ipynb```.
 
 ## Finetune on CMU Arctic dataset
-1. Download and extract the [CMU Arctic dataset][ljspeech_link] in the `data` directory. Also, move the files `train.txt` and `validation.txt` to the `data/filelists` directory.
+1. Download and extract the [CMU Arctic dataset][cmuarctic_link] in the `data` directory. Also, move the files `train.txt` and `validation.txt` to the `data/filelists` directory.
 2. Check `src/hparams.py` for hyperparameters and set GPUs.
     1. For multi-GPU training, set GPUs to ```[0, 1 ..]```
     2. For CPU training (not recommended), set GPUs to an empty list ```[]```
