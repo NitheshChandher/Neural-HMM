@@ -1,51 +1,34 @@
-# WASP Summer School 2022 - TTS using Neural HMMs
+# WASP Summer School 2022 - Workshop on Speech Synthesis
 ---
-
-[paper_link]: https://arxiv.org/abs/2108.13320
-[shivam_profile]: https://www.kth.se/profile/smehta
-[eva_profile]: https://www.kth.se/profile/szekely
-[jonas_profile]: https://www.kth.se/profile/beskow
-[gustav_profile]: https://people.kth.se/~ghe/
-[demo_page]: https://shivammehta007.github.io/Neural-HMM/
 [ljspeech_link]: https://keithito.com/LJ-Speech-Dataset/
-[github_link]: https://github.com/shivammehta007/Neural-HMM.git
 [github_new_issue_link]: https://github.com/shivammehta007/Neural-HMM/issues/new
 [docker_install_link]: https://docs.docker.com/get-docker/
 [tacotron2_link]: https://github.com/NVIDIA/tacotron2
-[pretrained_model_link]: https://github.com/shivammehta007/Neural-HMM/releases/download/Neural-HMM/Neural-HMM.ckpt
-[hifigan_all]: https://drive.google.com/drive/folders/1-eEYTB5Av9jNql0WGBlRoi-WH2J7bp5Y
-[hifigan_t2]: https://drive.google.com/drive/folders/1dqpUYEYF_hH7T0rII9_VQbps45FvNBqf
+[pretrained_model_link]: https://umeauniversity-my.sharepoint.com/:f:/g/personal/nich0037_ad_umu_se/Eh6sGtTfca9GukqZkLne0tABQSuPXLU-tdUtUlr-53e3Xg?e=lIMPzN
+[hifigan_all]: https://umeauniversity-my.sharepoint.com/:f:/g/personal/nich0037_ad_umu_se/Eib8mOgmPXFGi0P9E3gCFbEBRNtHE04UUuCCa7yTf2etTQ?e=wMdQ3I
 [pytorch_lightning_link]: https://github.com/PyTorchLightning/pytorch-lightning
 [pytorch_dataloader_issue_link]: https://github.com/pytorch/pytorch/issues/57273
 [nvidia_toolkit_link]: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html
 
 
-![Synthesising from Neural-HMM](docs/images/model_video.gif)
-
 ## Installations
 1. Clone this repository ```https://github.com/NitheshChandher/Neural-HMM.git``` 
-   * If using single GPU checkout the branch ```gradient_checkpointing``` it will help to fit bigger batch size during training. 
-   * Use `git clone --single-branch -b gradient_checkpointing https://github.com/NitheshChandher/Neural-HMM.git` for that.
 2. Initalise the submodules ```git submodule init; git submodule update```
 3. Make sure you have [docker installed][docker_install_link] and running. 
    * If the Docker Engine doesn't recognize the Nvidia drivers, follow the [instructions][nvidia_toolkit_link] to setup Nvidia container toolkit.
-4. Run ``bash start.sh`` and it will install all the dependencies and run the container.
+4. Download our [pre-trained LJ Speech models][pretrained_model_link] 
+5. Download HiFi gan pretrained [HiFiGAN models and config file][hifigan_all] and place them on the `hifigan` folder
+6. Run ``bash start.sh`` and it will install all the dependencies and run the container.
+7. Run jupyter notebook and open ```workshop.ipynb```.
 
-## Speech Synthesis using pre-trained model
-1. Download our [pre-trained LJ Speech model][pretrained_model_link]. 
-(This is the exact same model as system NH2 in the paper, but with training continued until reaching 200k updates total.)
-2. Download HiFi gan pretrained [HiFiGAN model][hifigan_all].
-    - We recommend using [fine tuned][hifigan_t2] on Tacotron2 if you cannot finetune on NeuralHMM. 
-3. Run jupyter notebook and open ```synthesis.ipynb```.
-
-## Finetuning using custom dataset
-1. Download and extract the [LJ Speech dataset][ljspeech_link]. Place it in the `data` folder such that the directory becomes `data/LJSpeech-1.1`. Otherwise update the filelists in `data/filelists` accordingly.
+## Finetune on CMU Arctic dataset
+1. Download and extract the [CMU Arctic dataset][ljspeech_link] in the `data` directory. Also, move the files `train.txt` and `validation.txt` to the `data/filelists` directory.
 2. Check `src/hparams.py` for hyperparameters and set GPUs.
     1. For multi-GPU training, set GPUs to ```[0, 1 ..]```
     2. For CPU training (not recommended), set GPUs to an empty list ```[]```
     3. Check the location of transcriptions
-3. Once your filelists and hparams are updated run `python generate_data_properties.py` to generate `data_parameters.pt` for your dataset (the default `data_parameters.pt` is available for LJSpeech in the repository).
-4. Run ```python train.py``` to train the model.
+3. Once hparams are updated run `python generate_data_properties.py` to generate `data_parameters.pt` for your dataset.
+4. Run ```python train.py -c checkpoints/Neural-HMM(Female).ckpt``` to fine tune the pre-trained LJ Speech model on the CMU Arctic dataset.
     1. Checkpoints will be saved in the `hparams.checkpoint_dir`.
     2. Tensorboard logs will be saved in the `hparams.tensorboard_log_dir`.
 5. To resume training, run ```python train.py -c <CHECKPOINT_PATH>```
