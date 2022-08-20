@@ -15,7 +15,7 @@
 1. Clone this repository ```https://github.com/NitheshChandher/Neural-HMM.git``` 
 2. Initalise the submodules ```git submodule init; git submodule update```
 3. Make sure you have [docker installed][docker_install_link] and running. 
-   * If the Docker Engine doesn't recognize the Nvidia drivers, follow the [instructions][nvidia_toolkit_link] to setup Nvidia container toolkit.
+   * Follow the [instructions][nvidia_toolkit_link] to setup Nvidia Docker.
 4. Download our [pre-trained LJ Speech models][pretrained_model_link] 
 5. Download HiFi gan pretrained [HiFiGAN models and config file][hifigan_all] and place them on the `hifigan` folder
 6. Run ``bash start.sh`` and it will install all the dependencies and run the container.
