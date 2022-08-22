@@ -19,7 +19,7 @@
 4. Download our [pre-trained LJ Speech models][pretrained_model_link] 
 5. Download HiFi gan pretrained [HiFiGAN models and config file][hifigan_all] and place them on the `hifigan` folder
 6. Run ``bash start.sh`` and it will install all the dependencies and run the container.
-7. Run jupyter notebook and open ```workshop.ipynb```.
+7. Run jupyter notebook and open ```speech_synthesis_workshop.ipynb```.
 
 ## Finetune on CMU Arctic dataset
 1. Download and extract the [CMU Arctic dataset][cmuarctic_link] in the `data` directory. Also, move the files `train.txt` and `validation.txt` to the `data/filelists` directory.
